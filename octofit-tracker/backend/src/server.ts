@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { connectDatabase } from './config/database.js';
 import Activity from './models/Activity.js';
 import Leaderboard from './models/Leaderboard.js';
@@ -12,6 +13,7 @@ const baseUrl = process.env.CODESPACE_NAME
   ? `https://${process.env.CODESPACE_NAME}-8000.app.github.dev`
   : 'http://localhost:8000';
 
+app.use(cors());
 app.use(express.json());
 
 connectDatabase().catch((error) => {
